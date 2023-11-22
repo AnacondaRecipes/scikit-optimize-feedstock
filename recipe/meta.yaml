@@ -12,16 +12,15 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . -vv
-  noarch: python
+  number: 2
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
   run:
-    - python >=3.6
+    - python
     - numpy
     - scipy >=0.14.0
     - scikit-learn >=0.19.1
@@ -47,6 +46,11 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   summary: Sequential model-based optimization toolbox.
+  description: |
+    Scikit-Optimize, or skopt, is a simple and efficient library to minimize (very) expensive and noisy black-box
+    functions. It implements several methods for sequential model-based optimization. skopt aims to be accessible and
+    easy to use in many contexts.
+    The library is built on top of NumPy, SciPy and Scikit-Learn.
   dev_url: https://github.com/scikit-optimize/scikit-optimize
   doc_url: https://scikit-optimize.github.io/
 
