@@ -1,0 +1,48 @@
+From 402836d638b844e8fa9477952932d99cf734506a Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Tue, 28 Nov 2023 17:11:14 +0100
+Subject: [PATCH 1/2] replace deprecated np.int
+
+---
+ benchmarks/bench_ml.py      | 2 +-
+ skopt/space/transformers.py | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/benchmarks/bench_ml.py b/benchmarks/bench_ml.py
+index 526afac..9b540c4 100644
+--- a/benchmarks/bench_ml.py
++++ b/benchmarks/bench_ml.py
+@@ -161,7 +161,7 @@ def load_data_target(name):
+             samples = np.array(data)
+             data = dict()
+             data["data"] = samples[:, :-1]
+-            data["target"] = np.array(samples[:, -1], dtype=np.int)
++            data["target"] = np.array(samples[:, -1], dtype=np.int64)
+     else:
+         raise ValueError("dataset not supported.")
+     return data["data"], data["target"]
+diff --git a/skopt/space/transformers.py b/skopt/space/transformers.py
+index 6889295..87cc3b6 100644
+--- a/skopt/space/transformers.py
++++ b/skopt/space/transformers.py
+@@ -259,7 +259,7 @@ class Normalize(Transformer):
+         if (self.high - self.low) == 0.:
+             return X * 0.
+         if self.is_int:
+-            return (np.round(X).astype(np.int) - self.low) /\
++            return (np.round(X).astype(np.int64) - self.low) /\
+                    (self.high - self.low)
+         else:
+             return (X - self.low) / (self.high - self.low)
+@@ -272,7 +272,7 @@ class Normalize(Transformer):
+             raise ValueError("All values should be greater than 0.0")
+         X_orig = X * (self.high - self.low) + self.low
+         if self.is_int:
+-            return np.round(X_orig).astype(np.int)
++            return np.round(X_orig).astype(np.int64)
+         return X_orig
+ 
+ 
+-- 
+2.39.3 (Apple Git-145)
+
