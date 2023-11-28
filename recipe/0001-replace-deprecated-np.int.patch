@@ -1,14 +1,3 @@
---- a/benchmarks/bench_ml.py
-+++ b/benchmarks/bench_ml.py
-@@ -161,7 +161,7 @@
-             samples = np.array(data)
-             data = dict()
-             data["data"] = samples[:, :-1]
--            data["target"] = np.array(samples[:, -1], dtype=np.int)
-+            data["target"] = np.array(samples[:, -1], dtype=np.int64)
-     else:
-         raise ValueError("dataset not supported.")
-     return data["data"], data["target"]
 --- a/skopt/space/transformers.py
 +++ b/skopt/space/transformers.py
 @@ -259,7 +259,7 @@
