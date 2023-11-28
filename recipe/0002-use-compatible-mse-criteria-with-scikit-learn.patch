@@ -1,17 +1,6 @@
-From e483e19deeee14ff41164b6cc9113376bdd7d096 Mon Sep 17 00:00:00 2001
-From: Jack Olivieri <jolivieri@anaconda.com>
-Date: Tue, 28 Nov 2023 17:12:09 +0100
-Subject: [PATCH 2/2] use compatible mse criteria with scikit-learn
-
----
- skopt/learning/forest.py | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/skopt/learning/forest.py b/skopt/learning/forest.py
-index 096770c..7bd7a84 100644
---- a/skopt/learning/forest.py
-+++ b/skopt/learning/forest.py
-@@ -194,7 +194,7 @@ class RandomForestRegressor(_sk_RandomForestRegressor):
+--- a/skopt/learning/forest.py	2023-11-28 17:46:19.442298090 +0100
++++ a/skopt/learning/forest.py	2023-11-28 17:45:17.329114767 +0100
+@@ -194,7 +194,7 @@
      .. [1] L. Breiman, "Random Forests", Machine Learning, 45(1), 5-32, 2001.
  
      """
@@ -20,7 +9,7 @@ index 096770c..7bd7a84 100644
                   min_samples_split=2, min_samples_leaf=1,
                   min_weight_fraction_leaf=0.0, max_features='auto',
                   max_leaf_nodes=None, min_impurity_decrease=0.,
-@@ -203,7 +203,7 @@ class RandomForestRegressor(_sk_RandomForestRegressor):
+@@ -203,7 +203,7 @@
                   min_variance=0.0):
          self.min_variance = min_variance
          super(RandomForestRegressor, self).__init__(
@@ -29,7 +18,7 @@ index 096770c..7bd7a84 100644
              max_depth=max_depth,
              min_samples_split=min_samples_split,
              min_samples_leaf=min_samples_leaf,
-@@ -239,9 +239,9 @@ class RandomForestRegressor(_sk_RandomForestRegressor):
+@@ -239,9 +239,9 @@
          mean = super(RandomForestRegressor, self).predict(X)
  
          if return_std:
@@ -41,7 +30,7 @@ index 096770c..7bd7a84 100644
                      % self.criterion)
              std = _return_std(X, self.estimators_, mean, self.min_variance)
              return mean, std
-@@ -390,7 +390,7 @@ class ExtraTreesRegressor(_sk_ExtraTreesRegressor):
+@@ -390,7 +390,7 @@
      .. [1] L. Breiman, "Random Forests", Machine Learning, 45(1), 5-32, 2001.
  
      """
@@ -50,7 +39,7 @@ index 096770c..7bd7a84 100644
                   min_samples_split=2, min_samples_leaf=1,
                   min_weight_fraction_leaf=0.0, max_features='auto',
                   max_leaf_nodes=None, min_impurity_decrease=0.,
-@@ -399,7 +399,7 @@ class ExtraTreesRegressor(_sk_ExtraTreesRegressor):
+@@ -399,7 +399,7 @@
                   min_variance=0.0):
          self.min_variance = min_variance
          super(ExtraTreesRegressor, self).__init__(
@@ -59,7 +48,7 @@ index 096770c..7bd7a84 100644
              max_depth=max_depth,
              min_samples_split=min_samples_split,
              min_samples_leaf=min_samples_leaf,
-@@ -435,9 +435,9 @@ class ExtraTreesRegressor(_sk_ExtraTreesRegressor):
+@@ -435,9 +435,9 @@
          mean = super(ExtraTreesRegressor, self).predict(X)
  
          if return_std:
@@ -71,6 +60,3 @@ index 096770c..7bd7a84 100644
                      % self.criterion)
              std = _return_std(X, self.estimators_, mean, self.min_variance)
              return mean, std
--- 
-2.39.3 (Apple Git-145)
-
