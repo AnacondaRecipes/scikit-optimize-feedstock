@@ -71,9 +71,9 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_tree_based_minimize" %}      # [py<311]
 {% set tests_to_skip = tests_to_skip + " or test_categorical_integer" %}      # [py<311]
 {% set tests_to_skip = tests_to_skip + " or test_dump_and_load_optimizer" %}  # [py<311]
-{% set tests_to_skip = tests_to_skip + " or test_deadline_stopper" %}  # [py<311 and win]
-{% set tests_to_skip = tests_to_skip + " or test_timer_callback" %}    # [py<311 and win]
-{% set tests_to_skip = tests_to_skip + " or test_real" %}              # [py<311 and linux-64]
+{% set tests_to_skip = tests_to_skip + " or test_deadline_stopper" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_timer_callback" %}    # [win]
+{% set tests_to_skip = tests_to_skip + " or test_real" %}              # [linux-64]
 
 
 test:
