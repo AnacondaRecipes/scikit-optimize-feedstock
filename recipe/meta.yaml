@@ -86,6 +86,7 @@ test:
     - pytest
   source_files:
     - skopt/tests
+    - setup.cfg
   commands:
     - pip check
     # this var is set in the upstream project
