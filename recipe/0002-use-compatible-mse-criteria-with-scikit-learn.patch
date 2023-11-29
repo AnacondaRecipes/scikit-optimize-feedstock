@@ -1,0 +1,62 @@
+--- a/skopt/learning/forest.py	2023-11-28 17:46:19.442298090 +0100
++++ a/skopt/learning/forest.py	2023-11-28 17:45:17.329114767 +0100
+@@ -194,7 +194,7 @@
+     .. [1] L. Breiman, "Random Forests", Machine Learning, 45(1), 5-32, 2001.
+ 
+     """
+-    def __init__(self, n_estimators=10, criterion='mse', max_depth=None,
++    def __init__(self, n_estimators=10, max_depth=None,
+                  min_samples_split=2, min_samples_leaf=1,
+                  min_weight_fraction_leaf=0.0, max_features='auto',
+                  max_leaf_nodes=None, min_impurity_decrease=0.,
+@@ -203,7 +203,7 @@
+                  min_variance=0.0):
+         self.min_variance = min_variance
+         super(RandomForestRegressor, self).__init__(
+-            n_estimators=n_estimators, criterion=criterion,
++            n_estimators=n_estimators,
+             max_depth=max_depth,
+             min_samples_split=min_samples_split,
+             min_samples_leaf=min_samples_leaf,
+@@ -239,9 +239,9 @@
+         mean = super(RandomForestRegressor, self).predict(X)
+ 
+         if return_std:
+-            if self.criterion != "mse":
++            if self.criterion != "squared_error":
+                 raise ValueError(
+-                    "Expected impurity to be 'mse', got %s instead"
++                    "Expected impurity to be 'squared_error', got %s instead"
+                     % self.criterion)
+             std = _return_std(X, self.estimators_, mean, self.min_variance)
+             return mean, std
+@@ -390,7 +390,7 @@
+     .. [1] L. Breiman, "Random Forests", Machine Learning, 45(1), 5-32, 2001.
+ 
+     """
+-    def __init__(self, n_estimators=10, criterion='mse', max_depth=None,
++    def __init__(self, n_estimators=10, max_depth=None,
+                  min_samples_split=2, min_samples_leaf=1,
+                  min_weight_fraction_leaf=0.0, max_features='auto',
+                  max_leaf_nodes=None, min_impurity_decrease=0.,
+@@ -399,7 +399,7 @@
+                  min_variance=0.0):
+         self.min_variance = min_variance
+         super(ExtraTreesRegressor, self).__init__(
+-            n_estimators=n_estimators, criterion=criterion,
++            n_estimators=n_estimators,
+             max_depth=max_depth,
+             min_samples_split=min_samples_split,
+             min_samples_leaf=min_samples_leaf,
+@@ -435,9 +435,9 @@
+         mean = super(ExtraTreesRegressor, self).predict(X)
+ 
+         if return_std:
+-            if self.criterion != "mse":
++            if self.criterion != "squared_error":
+                 raise ValueError(
+-                    "Expected impurity to be 'mse', got %s instead"
++                    "Expected impurity to be 'squared_error', got %s instead"
+                     % self.criterion)
+             std = _return_std(X, self.estimators_, mean, self.min_variance)
+             return mean, std
