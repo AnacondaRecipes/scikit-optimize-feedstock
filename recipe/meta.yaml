@@ -9,7 +9,9 @@ source:
   url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: b5602b22c7aacabe3afd36619f662d1f287f2e3fe9a5aa19bbc83f851b30b7bf
   patches:
+    # this patch fixes the use of deprecated np.int (numpy >=1.20)
     - 0001-replace-deprecated-np.int.patch
+    # this patch fixes an incorrectly chosen error rounding criteria used in the required scikit-learn version
     - 0002-use-compatible-mse-criteria-with-scikit-learn.patch
 
 build:
@@ -86,9 +88,10 @@ test:
     - skopt/tests
   commands:
     - pip check
+    # this var is set in the upstream project
     - export SKOPT_SKIP_NETWORK_TESTS=1  # [not win]
     - set SKOPT_SKIP_NETWORK_TESTS=1     # [win]
-    # - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" --ignore=skopt/tests/test_benchmarks.py -k "not({{ tests_to_skip }})" skopt/tests
+    # pytest parameters '-m "not fast_test" -m "not slow_test" -m "not slow"'' are set in the upstream project
     - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" skopt/tests -k "not({{ tests_to_skip }})" skopt/tests
 
 about:
