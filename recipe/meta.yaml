@@ -6,14 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 77d8c9e64947fc9f5cc05bbc6aed7b8a9907871ae26fe11997fd67be90f26008
-    patches:
-      - 0001-replace-deprecated-np.int.patch
-      - 0002-use-compatible-mse-criteria-with-scikit-learn.patch
-  - url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: b5602b22c7aacabe3afd36619f662d1f287f2e3fe9a5aa19bbc83f851b30b7bf
-    folder: git-repo
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 77d8c9e64947fc9f5cc05bbc6aed7b8a9907871ae26fe11997fd67be90f26008
+  patches:
+    - 0001-replace-deprecated-np.int.patch
+    - 0002-use-compatible-mse-criteria-with-scikit-learn.patch
 
 build:
   number: 1
@@ -87,12 +84,12 @@ test:
     - pip
     - pytest
   source_files:
-    - git-repo/skopt/tests
+    - skopt/tests
   commands:
     - pip check
     - export SKOPT_SKIP_NETWORK_TESTS=1  # [not win]
     - set SKOPT_SKIP_NETWORK_TESTS=1     # [win]
-    - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" --ignore=git-repo/skopt/tests/test_benchmarks.py -k "not({{ tests_to_skip }})" git-repo/skopt/tests
+    - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" --ignore=skopt/tests/test_benchmarks.py -k "not({{ tests_to_skip }})" skopt/tests
 
 about:
   home: https://scikit-optimize.github.io/
