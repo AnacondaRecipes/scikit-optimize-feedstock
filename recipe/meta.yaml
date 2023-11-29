@@ -38,39 +38,38 @@ requirements:
 # See the many issues that also affects tests, and comments
 # that mention that the package is not maintained e.g.:
 #   https://github.com/scikit-optimize/scikit-optimize/issues/1137
-#   https://github.com/scikit-optimize/scikit-optimize/issues/1137
 #
 # All that fail in test_common.py
-# {% set tests_to_skip = "test_per_second_api" %}
-# {% set tests_to_skip = tests_to_skip + " or test_early_stopping_delta_x" %}
-# {% set tests_to_skip = tests_to_skip + " or test_consistent_x_iter_dimensions" %}
-# {% set tests_to_skip = tests_to_skip + " or test_repeated_x" %}
-# {% set tests_to_skip = tests_to_skip + " or test_mixed_spaces" %}
-# {% set tests_to_skip = tests_to_skip + " or test_categorical_init_vals" %}
-# {% set tests_to_skip = tests_to_skip + " or test_init_vals" %}
-# {% set tests_to_skip = tests_to_skip + " or test_init_points_and_models" %}
-# {% set tests_to_skip = tests_to_skip + " or test_init_vals_and_models" %}
-# {% set tests_to_skip = tests_to_skip + " or test_minimizer_with_space" %}
-# {% set tests_to_skip = tests_to_skip + " or test_fixed_random_states" %}
-# {% set tests_to_skip = tests_to_skip + " or test_minimizer_api" %}
-# # All that fail in py<311 in other test modules
-# {% set tests_to_skip = tests_to_skip + " or test_reproducible_runs" %}        # [py<311]  
-# {% set tests_to_skip = tests_to_skip + " or test_same_set_of_points_ask" %}   # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_all_points_different" %}     # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_constant_liar_runs" %}       # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_optimizer_base_estimator_string_smoke" %}  # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_exhaust_initial_calls" %}    # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_optimizer_copy" %}           # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_acq_optimizer_with_time_api" %}  # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_returns_result_object" %}    # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_model_queue_size" %}         # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_multiple_asks" %}            # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_tree_based_minimize" %}      # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_categorical_integer" %}      # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_dump_and_load_optimizer" %}  # [py<311]
-# {% set tests_to_skip = tests_to_skip + " or test_deadline_stopper" %}  # [win]
-# {% set tests_to_skip = tests_to_skip + " or test_timer_callback" %}    # [win]
-# {% set tests_to_skip = tests_to_skip + " or test_real" %}              # [linux-64]
+{% set tests_to_skip = "test_per_second_api" %}
+{% set tests_to_skip = tests_to_skip + " or test_early_stopping_delta_x" %}
+{% set tests_to_skip = tests_to_skip + " or test_consistent_x_iter_dimensions" %}
+{% set tests_to_skip = tests_to_skip + " or test_repeated_x" %}
+{% set tests_to_skip = tests_to_skip + " or test_mixed_spaces" %}
+{% set tests_to_skip = tests_to_skip + " or test_categorical_init_vals" %}
+{% set tests_to_skip = tests_to_skip + " or test_init_vals" %}
+{% set tests_to_skip = tests_to_skip + " or test_init_points_and_models" %}
+{% set tests_to_skip = tests_to_skip + " or test_init_vals_and_models" %}
+{% set tests_to_skip = tests_to_skip + " or test_minimizer_with_space" %}
+{% set tests_to_skip = tests_to_skip + " or test_fixed_random_states" %}
+{% set tests_to_skip = tests_to_skip + " or test_minimizer_api" %}
+# All that fail in py<311 in other test modules
+{% set tests_to_skip = tests_to_skip + " or test_reproducible_runs" %}        # [py<311]  
+{% set tests_to_skip = tests_to_skip + " or test_same_set_of_points_ask" %}   # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_all_points_different" %}     # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_constant_liar_runs" %}       # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_optimizer_base_estimator_string_smoke" %}  # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_exhaust_initial_calls" %}    # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_optimizer_copy" %}           # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_acq_optimizer_with_time_api" %}  # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_returns_result_object" %}    # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_model_queue_size" %}         # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_multiple_asks" %}            # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_tree_based_minimize" %}      # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_categorical_integer" %}      # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_dump_and_load_optimizer" %}  # [py<311]
+{% set tests_to_skip = tests_to_skip + " or test_deadline_stopper" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_timer_callback" %}    # [win]
+{% set tests_to_skip = tests_to_skip + " or test_real" %}              # [linux-64]
 
 
 test:
@@ -90,7 +89,7 @@ test:
     - export SKOPT_SKIP_NETWORK_TESTS=1  # [not win]
     - set SKOPT_SKIP_NETWORK_TESTS=1     # [win]
     # - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" --ignore=skopt/tests/test_benchmarks.py -k "not({{ tests_to_skip }})" skopt/tests
-    - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" skopt/tests
+    - pytest --showlocals --pyargs -m "not fast_test" -m "not slow_test" -m "not slow" skopt/tests -k "not({{ tests_to_skip }})" skopt/tests
 
 about:
   home: https://scikit-optimize.github.io/
